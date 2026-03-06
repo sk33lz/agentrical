@@ -156,6 +156,13 @@ body.scan-hard {
     box-shadow: 0 0 0.75rem rgba(132, 255, 110, 0.34);
 }
 
+.nav-links .cta-button:hover,
+.nav-links .cta-button:focus-visible {
+    color: #05210a;
+    background: linear-gradient(135deg, #f3fff5, #c9ffd2);
+    box-shadow: 0 0 0.95rem rgba(132, 255, 110, 0.45);
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
