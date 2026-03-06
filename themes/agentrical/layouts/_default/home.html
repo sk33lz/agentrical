@@ -1,7 +1,105 @@
-{{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
-{{ end }}
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ .Site.Params.description }}">
+    <title>{{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+    {{ $home := .Site.Data.home }}
+    {{ $intro := strings.TrimSpace .Content }}
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="/"><h1>{{ $home.brand.name }}</h1></a>
+            </div>
+            <div class="nav-links">
+                {{ range $home.nav.links }}
+                <a href="{{ .href }}"{{ if .cta }} class="cta-button"{{ end }}>{{ .label }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <header class="hero">
+            <div class="hero-content container">
+                <h2 class="hero-title">{{ $home.hero.title }}</h2>
+                {{ if $intro }}
+                <div class="hero-subtitle">{{ .Content }}</div>
+                {{ else }}
+                <p class="hero-subtitle">{{ $home.hero.subtitle }}</p>
+                {{ end }}
+                <div class="hero-cta">
+                    {{ range $home.hero.ctas }}
+                    <a href="{{ .href }}" class="button {{ .style }}">{{ .label }}</a>
+                    {{ end }}
+                </div>
+            </div>
+        </header>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title">{{ $home.features.section_title }}</h2>
+                <div class="features-grid">
+                    {{ range $home.features.items }}
+                    <div class="feature-card">
+                        <div class="feature-icon">{{ .icon }}</div>
+                        <h3>{{ .title }}</h3>
+                        <p>{{ .description }}</p>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">{{ $home.services.section_title }}</h2>
+                <p class="section-intro">{{ $home.services.section_intro }}</p>
+                <div class="services-grid">
+                    {{ range $home.services.items }}
+                    <div class="service-card">
+                        <h3>{{ .title }}</h3>
+                        <p>{{ .description }}</p>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="cta-section">
+            <div class="container">
+                <h2>{{ $home.cta.title }}</h2>
+                <p>{{ $home.cta.description }}</p>
+                <a href="{{ $home.cta.button_href }}" class="button button-primary">{{ $home.cta.button_label }}</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; {{ now.Year }} {{ $home.brand.name }}. All rights reserved.</p>
+            <div class="footer-links">
+                {{ range $home.footer.links }}
+                <a href="{{ .href }}">{{ .label }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </footer>
+    <script>
+        (function () {
+            var scan = new URLSearchParams(window.location.search).get("scan");
+            if (scan === "subtle" || scan === "hard") {
+                document.body.classList.add("scan-" + scan);
+            }
+        }());
+    </script>
+</body>
+</html>

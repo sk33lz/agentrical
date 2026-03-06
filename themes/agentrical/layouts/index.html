@@ -11,6 +11,7 @@
 </head>
 <body>
     {{ $home := .Site.Data.home }}
+    {{ $intro := strings.TrimSpace .Content }}
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <nav class="nav">
@@ -31,7 +32,11 @@
         <header class="hero">
             <div class="hero-content container">
                 <h2 class="hero-title">{{ $home.hero.title }}</h2>
+                {{ if $intro }}
+                <div class="hero-subtitle">{{ .Content }}</div>
+                {{ else }}
                 <p class="hero-subtitle">{{ $home.hero.subtitle }}</p>
+                {{ end }}
                 <div class="hero-cta">
                     {{ range $home.hero.ctas }}
                     <a href="{{ .href }}" class="button {{ .style }}">{{ .label }}</a>
