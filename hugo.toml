@@ -1,0 +1,13 @@
+baseURL = 'https://agentrical.com/'
+languageCode = 'en-us'
+title = 'Agentrical - AI Agents Tailored To Your Use Case'
+theme = 'agentrical'
+
+[params]
+  description = 'Agentrical develops, builds, and deploys custom AI agents for business automation, operations, and decision support.'
+  author = 'Agentrical'
+
+  [params.contact]
+    provider = 'netlify'
+    success_url = '/contact/'
+    cloudflare_action = ''

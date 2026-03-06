@@ -1,0 +1,79 @@
+brand:
+  name: Agentrical
+
+nav:
+  links:
+    - label: Approach
+      href: "#features"
+      cta: false
+    - label: Use Cases
+      href: "#services"
+      cta: false
+    - label: Work With Us
+      href: "/contact/"
+      cta: true
+
+hero:
+  title: AI Agents Built to Work for Your Business Needs
+  subtitle: Agentrical develops, builds, and deploys custom AI agents for business automation, operations, and decision support.
+  ctas:
+    - label: Talk to Us
+      href: "/contact/"
+      style: button-primary
+    - label: See How
+      href: "#features"
+      style: button-secondary
+
+features:
+  section_title: Why Agentrical?
+  items:
+    - icon: "🤖"
+      title: Agent Development
+      description: We design and build AI agents tailored to the exact needs of each business, workflow, and decision context.
+    - icon: "🧠"
+      title: Multi-Agent Workflows
+      description: We orchestrate teams of agents with distinct roles so exploration, critique, and synthesis happen faster and with better coverage.
+    - icon: "🎯"
+      title: Custom Skills Development
+      description: We create domain-specific skills, prompts, and tools so agents can execute recurring tasks reliably inside your context.
+    - icon: "🔧"
+      title: Smart Automation
+      description: We automate high-value workflows intentionally, focusing on speed, consistency, and measurable business impact.
+    - icon: "🔒"
+      title: Guardrails And Oversight
+      description: We keep people in control with policy checks, approval points, and clear ownership where risk and accuracy matter.
+    - icon: "📊"
+      title: Data Governance
+      description: We design agent workflows with data boundaries, traceability, and handling standards aligned to your governance requirements.
+
+services:
+  section_title: Where We Add Value
+  section_intro: Clear ways we help teams build, deploy, and improve AI agents in day-to-day operations.
+  items:
+    - title: Start With The Right Problems
+      description: Focus agent efforts on use cases that are high-value, clear, and worth automating.
+    - title: Build For Your Workflow
+      description: Create custom agents that fit your team, systems, and business requirements.
+    - title: Coordinate Multi-Agent Work
+      description: Use specialized agents together for research, execution, review, and final output.
+    - title: Add Guardrails Early
+      description: Set approval steps, access limits, and clear boundaries before broader rollout.
+    - title: Improve Output Quality
+      description: Measure performance, catch weak spots, and improve reliability over time.
+    - title: Scale With Confidence
+      description: Expand successful workflows with stronger governance, monitoring, and operational control.
+
+cta:
+  title: Build And Use Agents With Better Discipline
+  description: Agentrical helps teams develop and apply AI agents with clearer goals, better evaluation, and stronger execution discipline.
+  button_label: Contact Us
+  button_href: "/contact/"
+
+footer:
+  links:
+    - label: Privacy Policy
+      href: "/privacy-policy/"
+    - label: Terms of Service
+      href: "/terms-of-service/"
+    - label: Contact
+      href: "/contact/"

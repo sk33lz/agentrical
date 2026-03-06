@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ .Site.Params.description }}">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+    {{ $home := .Site.Data.home }}
+    {{ $provider := default "netlify" .Site.Params.contact.provider }}
+    {{ $success := default "/contact/" .Site.Params.contact.success_url }}
+    {{ $cfAction := .Site.Params.contact.cloudflare_action }}
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="/"><h1>{{ $home.brand.name }}</h1></a>
+            </div>
+            <div class="nav-links">
+                {{ range $home.nav.links }}
+                {{ $href := .href }}
+                {{ if hasPrefix .href "#" }}
+                    {{ $href = printf "/%s" .href }}
+                {{ end }}
+                <a href="{{ $href }}"{{ if .cta }} class="cta-button"{{ end }}>{{ .label }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content" class="contact-main">
+        <section class="contact-hero">
+            <div class="container">
+                <h2 class="section-title">{{ .Title }}</h2>
+                <div class="section-intro">{{ .Content }}</div>
+            </div>
+        </section>
+
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="contact-card">
+                    {{ if eq $provider "cloudflare" }}
+                        <p class="contact-meta">Configured for Cloudflare Workers.</p>
+                        {{ if not $cfAction }}
+                            <p class="contact-warning">Set <code>params.contact.cloudflare_action</code> in <code>hugo.toml</code> to your worker endpoint URL.</p>
+                        {{ end }}
+                        <form class="contact-form" method="POST" action="{{ $cfAction }}">
+                    {{ else }}
+                        <p class="contact-meta">Configured for Netlify Forms.</p>
+                        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="{{ $success }}">
+                            <input type="hidden" name="form-name" value="contact">
+                            <p class="hidden-field">
+                                <label>Do not fill this out: <input name="bot-field"></label>
+                            </p>
+                    {{ end }}
+                        <div class="form-grid">
+                            <label>
+                                Name
+                                <input type="text" name="name" required>
+                            </label>
+                            <label>
+                                Work Email
+                                <input type="email" name="email" required>
+                            </label>
+                            <label>
+                                Company
+                                <input type="text" name="company">
+                            </label>
+                            <label>
+                                Primary Use Case
+                                <input type="text" name="use_case" placeholder="Research, support, operations, etc.">
+                            </label>
+                        </div>
+                        <label>
+                            Message
+                            <textarea name="message" rows="6" required placeholder="Tell us what you want to build or improve."></textarea>
+                        </label>
+                        <button class="button button-solid" type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; {{ now.Year }} {{ $home.brand.name }}. All rights reserved.</p>
+            <div class="footer-links">
+                {{ range $home.footer.links }}
+                <a href="{{ .href }}">{{ .label }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
