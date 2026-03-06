@@ -13,7 +13,7 @@
     {{ $home := .Site.Data.home }}
     {{ $provider := default "netlify" .Site.Params.contact.provider }}
     {{ $success := default "/contact/" .Site.Params.contact.success_url }}
-    {{ $cfAction := .Site.Params.contact.cloudflare_action }}
+    {{ $cfAction := default "/api/contact" .Site.Params.contact.cloudflare_action }}
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <nav class="nav">
@@ -45,11 +45,14 @@
             <div class="container">
                 <div class="contact-card">
                     {{ if eq $provider "cloudflare" }}
-                        <p class="contact-meta">Configured for Cloudflare Workers.</p>
+                        <p class="contact-meta">Configured for Cloudflare Pages Functions.</p>
                         {{ if not $cfAction }}
                             <p class="contact-warning">Set <code>params.contact.cloudflare_action</code> in <code>hugo.toml</code> to your worker endpoint URL.</p>
                         {{ end }}
                         <form class="contact-form" method="POST" action="{{ $cfAction }}">
+                            <p class="hidden-field">
+                                <label>Do not fill this out: <input name="bot-field"></label>
+                            </p>
                     {{ else }}
                         <p class="contact-meta">Configured for Netlify Forms.</p>
                         <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="{{ $success }}">

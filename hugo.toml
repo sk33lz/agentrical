@@ -8,6 +8,6 @@ theme = 'agentrical'
   author = 'Agentrical'
 
   [params.contact]
-    provider = 'netlify'
-    success_url = '/contact/'
-    cloudflare_action = ''
+    provider = 'cloudflare'
+    success_url = '/contact/?sent=1'
+    cloudflare_action = '/api/contact'
