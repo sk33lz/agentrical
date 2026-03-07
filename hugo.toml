@@ -9,5 +9,5 @@ theme = 'agentrical'
 
   [params.contact]
     provider = 'cloudflare'
-    success_url = '/contact/?sent=1'
+    success_url = '/contact/thank-you/'
     cloudflare_action = '/api/contact'

@@ -36,7 +36,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
     // Quietly succeed on honeypot hits to avoid signaling bot detection.
     if (clean(formData.get("bot-field"), 255)) {
-      return redirect(request, "/contact/?sent=1");
+      return redirect(request, "/contact/thank-you/");
     }
 
     const name = clean(formData.get("name"), 120);
@@ -108,7 +108,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     }
 
     if (isHtmlRequest(request)) {
-      return redirect(request, "/contact/?sent=1");
+      return redirect(request, "/contact/thank-you/");
     }
 
     return new Response(JSON.stringify({ ok: true }), {

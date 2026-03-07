@@ -309,6 +309,10 @@ select:focus-visible {
     padding: 1.5rem;
 }
 
+.thank-you-card {
+    text-align: center;
+}
+
 .contact-meta {
     color: var(--ink-soft);
     margin-bottom: 1rem;
