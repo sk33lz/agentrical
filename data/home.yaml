@@ -20,7 +20,7 @@ hero:
     - label: Talk to Us
       href: "/contact/"
       style: button-primary
-    - label: See How
+    - label: Learn More
       href: "#features"
       style: button-secondary
 
