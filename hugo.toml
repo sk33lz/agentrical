@@ -1,6 +1,6 @@
 baseURL = 'https://agentrical.com/'
 languageCode = 'en-us'
-title = 'Agentrical - AI Agents Tailored To Your Use Case'
+title = 'Agentrical - AI Agents Built to Work for Your Business Needs'
 theme = 'agentrical'
 
 [params]
