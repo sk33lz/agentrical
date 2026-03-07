@@ -45,7 +45,6 @@
             <div class="container">
                 <div class="contact-card">
                     {{ if eq $provider "cloudflare" }}
-                        <p class="contact-meta">Configured for Cloudflare Pages Functions.</p>
                         {{ if not $cfAction }}
                             <p class="contact-warning">Set <code>params.contact.cloudflare_action</code> in <code>hugo.toml</code> to your worker endpoint URL.</p>
                         {{ end }}
