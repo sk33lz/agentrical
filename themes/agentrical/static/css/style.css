@@ -508,24 +508,12 @@ select:focus-visible {
 .feature-card-link {
     text-decoration: none;
     color: inherit;
-    display: block;
 }
 
 .feature-card-link:focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 3px;
     border-radius: var(--radius);
-}
-
-.feature-card-link:hover .feature-card,
-.feature-card-link:focus-visible .feature-card {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-}
-
-.feature-card-link:hover .feature-card::before,
-.feature-card-link:focus-visible .feature-card::before {
-    opacity: 1;
 }
 
 /* CTA */
