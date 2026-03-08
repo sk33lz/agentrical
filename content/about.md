@@ -4,7 +4,7 @@ date = 2026-03-07T00:00:00-05:00
 draft = false
 type = "about"
 [params]
-  name = "Jason"
+  name = "Jason Moore"
   role = "Founder, Agentrical"
   photo = "/images/about/jason.jpg"
 +++
