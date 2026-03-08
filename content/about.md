@@ -7,6 +7,11 @@ type = "about"
   name = "Jason Moore"
   role = "Founder, Agentrical"
   photo = "/images/about/jason.jpg"
+  [params.social]
+    website = "https://sk33lz.com"
+    linkedin = "https://www.linkedin.com/in/sk33lz"
+    facebook = "https://www.facebook.com/jason.moore.3762584"
+    drupal = "https://www.drupal.org/u/sk33lz"
 +++
 
 I started Agentrical to help businesses and organizations build and deploy AI agents with better structure, better standards, better security, and ultimately better outcomes for your ROI in AI.

@@ -14,6 +14,10 @@
     {{ $name := default "Founder" .Params.name }}
     {{ $role := default "" .Params.role }}
     {{ $photo := default "/images/about/profile-placeholder.svg" .Params.photo }}
+    {{ $website := .Params.social.website }}
+    {{ $linkedin := .Params.social.linkedin }}
+    {{ $facebook := .Params.social.facebook }}
+    {{ $drupal := .Params.social.drupal }}
 
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
@@ -50,6 +54,22 @@
                     <div class="about-bio">
                         {{ .Content }}
                     </div>
+                    {{ if or $website $linkedin $facebook $drupal }}
+                    <div class="about-social">
+                        {{ with $website }}
+                        <a class="about-social-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Website</a>
+                        {{ end }}
+                        {{ with $linkedin }}
+                        <a class="about-social-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        {{ end }}
+                        {{ with $facebook }}
+                        <a class="about-social-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Facebook</a>
+                        {{ end }}
+                        {{ with $drupal }}
+                        <a class="about-social-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Drupal.org</a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
                     <div class="about-actions">
                         <a class="button button-solid" href="/contact/">Schedule a Call</a>
                     </div>
