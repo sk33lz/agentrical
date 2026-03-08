@@ -41,7 +41,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 
     const name = clean(formData.get("name"), 120);
     const email = clean(formData.get("email"), 254).toLowerCase();
-    const company = clean(formData.get("company"), 160);
     const useCase = clean(formData.get("use_case"), 200);
     const message = clean(formData.get("message"), 5000);
 
@@ -68,13 +67,11 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     }
 
     const from = env.CONTACT_FROM || "Agentrical Contact <onboarding@resend.dev>";
-    const subjectBase = company ? `${name} (${company})` : name;
-    const subject = `New Contact Form Submission: ${subjectBase}`;
+    const subject = `New Contact Form Submission: ${name}`;
 
     const textBody =
       `Name: ${name}\n` +
       `Email: ${email}\n` +
-      `Company: ${company || "-"}\n` +
       `Use Case: ${useCase || "-"}\n\n` +
       `Message:\n${message}\n`;
 
@@ -82,7 +79,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
       `<h2>New Contact Form Submission</h2>` +
       `<p><strong>Name:</strong> ${toHtml(name)}</p>` +
       `<p><strong>Email:</strong> ${toHtml(email)}</p>` +
-      `<p><strong>Company:</strong> ${toHtml(company || "-")}</p>` +
       `<p><strong>Use Case:</strong> ${toHtml(useCase || "-")}</p>` +
       `<p><strong>Message:</strong></p><p>${toHtml(message).replace(/\n/g, "<br>")}</p>`;
 

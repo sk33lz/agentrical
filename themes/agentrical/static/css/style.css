@@ -640,15 +640,21 @@ select:focus-visible {
     padding: 4.2rem 0 5rem;
 }
 
+.about-shell {
+    max-width: 1020px;
+}
+
 .about-layout {
     display: grid;
     grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
     gap: 2rem;
-    align-items: start;
+    align-items: center;
 }
 
 .about-photo-wrap {
     margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .about-photo {
@@ -667,26 +673,36 @@ select:focus-visible {
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
-    padding: 1.6rem;
+    padding: 1.9rem;
 }
 
-.about-title {
-    text-align: left;
-    margin-bottom: 0.75rem;
+.about-kicker {
+    margin-bottom: 0.35rem;
+    color: var(--mint);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.79rem;
 }
 
 .about-name {
     font-family: "Space Grotesk", "Archivo", sans-serif;
-    font-size: 1.35rem;
+    font-size: clamp(1.7rem, 3.4vw, 2.35rem);
     font-weight: 700;
+    line-height: 1.15;
     color: var(--ink);
 }
 
 .about-role {
-    margin-top: 0.1rem;
-    margin-bottom: 1rem;
+    margin-top: 0.2rem;
+    margin-bottom: 1.1rem;
     color: var(--ink-soft);
     font-weight: 600;
+}
+
+.about-bio {
+    color: var(--ink);
+    font-size: 1.02rem;
 }
 
 .about-bio p + p {
@@ -700,9 +716,14 @@ select:focus-visible {
 @media (max-width: 900px) {
     .about-layout {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
     }
 
     .about-photo {
         max-width: 280px;
+    }
+
+    .about-card {
+        padding: 1.35rem;
     }
 }

@@ -12,7 +12,7 @@ nav:
     - label: About
       href: "/about/"
       cta: false
-    - label: Work With Us
+    - label: Schedule a Call
       href: "/contact/"
       cta: true
 
@@ -20,7 +20,7 @@ hero:
   title: AI Agents Built to Work for Your Business Needs
   subtitle: Agentrical develops, builds, and deploys custom AI agents for business automation, operations, and decision support.
   ctas:
-    - label: Talk to Us
+    - label: Schedule a Call
       href: "/contact/"
       style: button-primary
     - label: Learn More

@@ -36,13 +36,14 @@
 
     <main id="main-content" class="about-main">
         <section class="about-hero">
-            <div class="container about-layout">
+            <div class="container about-shell">
+                <div class="about-layout">
                 <figure class="about-photo-wrap">
                     <img class="about-photo" src="{{ $photo }}" alt="Photo of {{ $name }}" loading="lazy" decoding="async">
                 </figure>
                 <article class="about-card">
-                    <h2 class="section-title about-title">{{ .Title }}</h2>
-                    <p class="about-name">{{ $name }}</p>
+                    <p class="about-kicker">{{ .Title }}</p>
+                    <h1 class="about-name">{{ $name }}</h1>
                     {{ if $role }}
                     <p class="about-role">{{ $role }}</p>
                     {{ end }}
@@ -50,9 +51,10 @@
                         {{ .Content }}
                     </div>
                     <div class="about-actions">
-                        <a class="button button-solid" href="/contact/">Work With Me</a>
+                        <a class="button button-solid" href="/contact/">Schedule a Call</a>
                     </div>
                 </article>
+                </div>
             </div>
         </section>
     </main>
