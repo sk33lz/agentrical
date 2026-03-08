@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ .Site.Params.description }}">
+    <title>{{ .Title }} | {{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+    {{ $home := .Site.Data.home }}
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="/"><h1>{{ $home.brand.name }}</h1></a>
+            </div>
+            <div class="nav-links">
+                {{ range $home.nav.links }}
+                {{ $href := .href }}
+                {{ if hasPrefix .href "#" }}
+                    {{ $href = printf "/%s" .href }}
+                {{ end }}
+                <a href="{{ $href }}"{{ if .cta }} class="cta-button"{{ end }}>{{ .label }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content" class="contact-main">
+        <section class="contact-hero">
+            <div class="container">
+                <h2 class="section-title">{{ .Title }}</h2>
+            </div>
+        </section>
+
+        <section class="contact-form-section">
+            <div class="container">
+                <article class="contact-card service-detail-card">
+                    <div class="service-detail-body">
+                        {{ .Content }}
+                    </div>
+                    <div class="about-actions">
+                        <a class="button button-solid" href="/contact/">Schedule a Call</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; {{ now.Year }} {{ $home.brand.name }}. All rights reserved.</p>
+            <div class="footer-links">
+                {{ range $home.footer.links }}
+                <a href="{{ .href }}">{{ .label }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -49,11 +49,21 @@
                 <h2 class="section-title">{{ $home.features.section_title }}</h2>
                 <div class="features-grid">
                     {{ range $home.features.items }}
+                    {{ if .href }}
+                    <a class="feature-card-link" href="{{ .href }}">
+                        <div class="feature-card">
+                            <div class="feature-icon">{{ .icon }}</div>
+                            <h3>{{ .title }}</h3>
+                            <p>{{ .description }}</p>
+                        </div>
+                    </a>
+                    {{ else }}
                     <div class="feature-card">
                         <div class="feature-icon">{{ .icon }}</div>
                         <h3>{{ .title }}</h3>
                         <p>{{ .description }}</p>
                     </div>
+                    {{ end }}
                     {{ end }}
                 </div>
             </div>

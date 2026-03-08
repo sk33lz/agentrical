@@ -313,6 +313,16 @@ select:focus-visible {
     text-align: center;
 }
 
+.service-detail-body p + p,
+.service-detail-body ul + p,
+.service-detail-body p + ul {
+    margin-top: 0.9rem;
+}
+
+.service-detail-body ul {
+    padding-left: 1.2rem;
+}
+
 .contact-meta {
     color: var(--ink-soft);
     margin-bottom: 1rem;
@@ -493,6 +503,29 @@ select:focus-visible {
 .service-card p {
     color: var(--ink-soft);
     font-size: 0.98rem;
+}
+
+.feature-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.feature-card-link:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius);
+}
+
+.feature-card-link:hover .feature-card,
+.feature-card-link:focus-visible .feature-card {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-card-link:hover .feature-card::before,
+.feature-card-link:focus-visible .feature-card::before {
+    opacity: 1;
 }
 
 /* CTA */

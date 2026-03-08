@@ -33,21 +33,27 @@ features:
     - icon: "🤖"
       title: Agent Development
       description: We design and build AI agents tailored to the exact needs of each business, workflow, and decision context.
+      href: "/services/agent-development/"
     - icon: "🧠"
       title: Multi-Agent Workflows
       description: We orchestrate teams of agents with distinct roles so exploration, critique, and synthesis happen faster and with better coverage.
+      href: "/services/multi-agent-workflows/"
     - icon: "🎯"
       title: Custom Skills Development
       description: We create domain-specific skills, prompts, and tools so agents can execute recurring tasks reliably inside your context.
+      href: "/services/custom-skills-development/"
     - icon: "🔧"
       title: Smart Automation
       description: We automate high-value workflows intentionally, focusing on speed, consistency, and measurable business impact.
+      href: "/services/smart-automation/"
     - icon: "🔒"
       title: Guardrails And Oversight
       description: We keep people in control with policy checks, approval points, and clear ownership where risk and accuracy matter.
+      href: "/services/guardrails-and-oversight/"
     - icon: "📊"
       title: Data Governance
       description: We design agent workflows with data boundaries, traceability, and handling standards aligned to your governance requirements.
+      href: "/services/data-governance/"
 
 services:
   section_title: Where We Add Value
