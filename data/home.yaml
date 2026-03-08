@@ -9,6 +9,9 @@ nav:
     - label: Use Cases
       href: "#services"
       cta: false
+    - label: About
+      href: "/about/"
+      cta: false
     - label: Work With Us
       href: "/contact/"
       cta: true
@@ -75,5 +78,7 @@ footer:
       href: "/privacy-policy/"
     - label: Terms of Service
       href: "/terms-of-service/"
+    - label: About
+      href: "/about/"
     - label: Contact
       href: "/contact/"

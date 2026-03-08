@@ -630,3 +630,79 @@ select:focus-visible {
         display: none;
     }
 }
+
+/* About */
+.about-main {
+    min-height: calc(100vh - var(--nav-height));
+}
+
+.about-hero {
+    padding: 4.2rem 0 5rem;
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.about-photo-wrap {
+    margin: 0;
+}
+
+.about-photo {
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    background: var(--surface-alt);
+}
+
+.about-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1.6rem;
+}
+
+.about-title {
+    text-align: left;
+    margin-bottom: 0.75rem;
+}
+
+.about-name {
+    font-family: "Space Grotesk", "Archivo", sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.about-role {
+    margin-top: 0.1rem;
+    margin-bottom: 1rem;
+    color: var(--ink-soft);
+    font-weight: 600;
+}
+
+.about-bio p + p {
+    margin-top: 0.9rem;
+}
+
+.about-actions {
+    margin-top: 1.35rem;
+}
+
+@media (max-width: 900px) {
+    .about-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .about-photo {
+        max-width: 280px;
+    }
+}
