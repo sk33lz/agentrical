@@ -2,6 +2,7 @@ interface Env {
   RESEND_API_KEY: string;
   CONTACT_TO?: string;
   CONTACT_FROM?: string;
+  TURNSTILE_SECRET_KEY?: string;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,6 +31,44 @@ function redirect(request: Request, path: string): Response {
   return Response.redirect(location, 303);
 }
 
+async function verifyTurnstile(env: Env, formData: FormData): Promise<Response | null> {
+  const token = clean(formData.get("cf-turnstile-response"), 4096);
+  if (!token) {
+    return new Response(JSON.stringify({ error: "Captcha required." }), {
+      status: 400,
+      headers: { "content-type": "application/json; charset=utf-8" },
+    });
+  }
+
+  if (!env.TURNSTILE_SECRET_KEY) {
+    return new Response("Missing TURNSTILE_SECRET_KEY.", { status: 500 });
+  }
+
+  const verifyBody = new URLSearchParams({
+    secret: env.TURNSTILE_SECRET_KEY,
+    response: token,
+  });
+
+  const verifyResp = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    body: verifyBody,
+  });
+
+  if (!verifyResp.ok) {
+    return new Response("Captcha verification error.", { status: 502 });
+  }
+
+  const result = (await verifyResp.json()) as { success?: boolean; "error-codes"?: string[] };
+  if (!result.success) {
+    return new Response(JSON.stringify({ error: "Captcha verification failed.", details: result["error-codes"] || [] }), {
+      status: 400,
+      headers: { "content-type": "application/json; charset=utf-8" },
+    });
+  }
+
+  return null;
+}
+
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   try {
     const formData = await request.formData();
@@ -37,6 +76,14 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     // Quietly succeed on honeypot hits to avoid signaling bot detection.
     if (clean(formData.get("bot-field"), 255)) {
       return redirect(request, "/contact/thank-you/");
+    }
+
+    const captchaError = await verifyTurnstile(env, formData);
+    if (captchaError) {
+      if (isHtmlRequest(request)) {
+        return redirect(request, "/contact/?error=captcha");
+      }
+      return captchaError;
     }
 
     const name = clean(formData.get("name"), 120);

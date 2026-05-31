@@ -46,3 +46,8 @@ Generated output is written to `public/`.
 ## Deployment
 
 Deploy the `public/` directory to any static host (Netlify, Vercel, S3/CloudFront, etc.).
+
+If you use the Cloudflare contact endpoint, set both:
+
+- `params.contact.turnstile_site_key` in `hugo.toml`
+- `TURNSTILE_SECRET_KEY` in the Pages function environment

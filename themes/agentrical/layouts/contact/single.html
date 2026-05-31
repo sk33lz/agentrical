@@ -14,6 +14,7 @@
     {{ $provider := default "netlify" .Site.Params.contact.provider }}
     {{ $success := default "/contact/" .Site.Params.contact.success_url }}
     {{ $cfAction := default "/api/contact" .Site.Params.contact.cloudflare_action }}
+    {{ $turnstileSiteKey := default "" .Site.Params.contact.turnstile_site_key }}
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <nav class="nav">
@@ -44,9 +45,13 @@
         <section class="contact-form-section">
             <div class="container">
                 <div class="contact-card">
+                    <p class="contact-status" id="contact-status" hidden></p>
                     {{ if eq $provider "cloudflare" }}
                         {{ if not $cfAction }}
                             <p class="contact-warning">Set <code>params.contact.cloudflare_action</code> in <code>hugo.toml</code> to your worker endpoint URL.</p>
+                        {{ end }}
+                        {{ if not $turnstileSiteKey }}
+                            <p class="contact-warning">Set <code>params.contact.turnstile_site_key</code> and <code>TURNSTILE_SECRET_KEY</code> to enable captcha protection.</p>
                         {{ end }}
                         <form class="contact-form" method="POST" action="{{ $cfAction }}">
                             <p class="hidden-field">
@@ -78,12 +83,43 @@
                             Message
                             <textarea name="message" rows="6" required placeholder="Tell us what you want to build or improve."></textarea>
                         </label>
+                        {{ if eq $provider "cloudflare" }}
+                            {{ if $turnstileSiteKey }}
+                                <div class="captcha-block">
+                                    <div class="cf-turnstile" data-sitekey="{{ $turnstileSiteKey }}"></div>
+                                </div>
+                                <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+                            {{ end }}
+                        {{ end }}
                         <button class="button button-solid" type="submit">Send Message</button>
                     </form>
                 </div>
             </div>
         </section>
     </main>
+
+    <script>
+        (() => {
+            const status = document.getElementById('contact-status');
+            if (!status) return;
+
+            const params = new URLSearchParams(window.location.search);
+            const error = params.get('error');
+            if (!error) return;
+
+            const messages = {
+                captcha: 'Captcha check failed. Try again.',
+                validation: 'Check the form fields and try again.',
+            };
+
+            status.hidden = false;
+            status.classList.add('contact-status-error');
+            status.textContent = messages[error] || 'Form submission failed. Try again.';
+            params.delete('error');
+            const nextUrl = `${window.location.pathname}${params.toString() ? `?${params}` : ''}${window.location.hash}`;
+            window.history.replaceState({}, '', nextUrl);
+        })();
+    </script>
 
     <footer class="footer">
         <div class="container">
